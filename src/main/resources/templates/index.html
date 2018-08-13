@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div class="uk-background-muted uk-position-cover ">
+    <div class=" uk-container uk-margin-top uk-text-center">
+        <div class="uk-border-rounded uk-card uk-card-body uk-card-default">
+            <h2>Bon Appetit</h2>
+        </div>
+        <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
+            <div th:text="'Today: ' + ${date}"></div>
+        </div>
+        <div th:if="${todayMenu} == null">
+            <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
+                <div class="uk-margin">
+                    <h2 th:text="#{error.menu.not_published}"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

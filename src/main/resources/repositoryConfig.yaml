@@ -1,0 +1,7 @@
+#Mongodb
+spring:
+  data:
+    mongodb:
+      database: bonapp
+      host: localhost
+      port: 27017
