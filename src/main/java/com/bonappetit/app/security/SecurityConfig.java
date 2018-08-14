@@ -20,9 +20,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf()
                 .disable().authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
-                .and()
+                /*.and()
                 .authorizeRequests()
                 .antMatchers("/menu/**").hasAuthority(RolesType.CAFETERIA_MANAGER.getAuthority())
+                */
                 .and()
                 .authorizeRequests()
                 .antMatchers("/home","/registration", "/error" ).permitAll()

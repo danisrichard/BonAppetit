@@ -11,6 +11,14 @@
         <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
             <div th:text="'Today: ' + ${date}"></div>
         </div>
+        <div th:if="${todayMenu} != null">
+            <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
+                <div class="uk-margin">
+                    <div th:replace="home-page-section/daily-menu-section"></div>
+                </div>
+            </div>
+        </div>
+
         <div th:if="${todayMenu} == null">
             <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
                 <div class="uk-margin">
