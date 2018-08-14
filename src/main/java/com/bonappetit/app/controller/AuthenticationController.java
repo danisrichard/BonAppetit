@@ -1,6 +1,8 @@
 package com.bonappetit.app.controller;
 
+import com.bonappetit.app.model.userSection.Roles;
 import com.bonappetit.app.model.userSection.Users;
+import com.bonappetit.app.repository.RoleRepository;
 import com.bonappetit.app.service.UserRegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -29,8 +32,7 @@ public class AuthenticationController implements WebMvcConfigurer {
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
-        Users user = new Users();
-        model.addAttribute("user", user);
+        model.addAttribute("user", new Users());
         return "/authentication-section/registration";
     }
 
@@ -39,12 +41,10 @@ public class AuthenticationController implements WebMvcConfigurer {
         if (bindingResult.hasErrors()) {
             return "/authentication-section/registration";
         }
-        model.addAttribute("successMessage", "User has been registered successfully");
+        //model.addAttribute("successMessage", true);
         userService.saveUser(user);
         return "/authentication-section/login";
     }
-}
-
 
     @GetMapping(value = "/login")
     public String login(Principal principal) {

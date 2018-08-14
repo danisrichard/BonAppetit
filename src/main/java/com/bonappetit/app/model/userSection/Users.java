@@ -13,6 +13,8 @@ public class Users {
 
     @Id
     private String id;
+    @NotEmpty
+    @NotNull
     private String userName;
     @NotNull
     @NotEmpty

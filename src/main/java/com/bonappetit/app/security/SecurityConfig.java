@@ -1,5 +1,6 @@
 package com.bonappetit.app.security;
 
+import com.bonappetit.app.model.userSection.rolesType.RolesType;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable().authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
                 .authorizeRequests()
-                .antMatchers("/menu/publish/**" ).hasRole("CAFETERIA_MANAGER")
-                .anyRequest().not().authenticated()
+                .antMatchers("/menu/**").hasAuthority(RolesType.CAFETERIA_MANAGER.getAuthority())
                 .and()
                 .authorizeRequests()
                 .antMatchers("/home","/registration", "/error" ).permitAll()
@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .defaultSuccessUrl("/", true)
+                .defaultSuccessUrl("/home", true)
                 .permitAll()
                 .and()
                 .logout()

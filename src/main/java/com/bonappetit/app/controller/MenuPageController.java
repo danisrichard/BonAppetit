@@ -1,8 +1,5 @@
 package com.bonappetit.app.controller;
 
-import com.bonappetit.app.service.UserRegistrationService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
-public class HomePageController {
+public class MenuPageController {
 
     @GetMapping(value = {"/home", "/", "/index"})
     public String loadIndexPage(Model model){

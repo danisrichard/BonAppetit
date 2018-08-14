@@ -1,10 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
 <body>
-
+<div class="uk-container">
+    <div class="uk-position-center k-margin">
+        <!--<div class="" th:if="${successMessage} == true" th:text="#{successMessage}"></div>-->
+        <form autocomplete="off" action="#" th:action="@{/registration}" th:object="${user}" method="post">
+            <div class="uk-margin">
+                <div class="uk-inline">
+                    <label th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"
+                           class="alert alert-danger"></label>
+                    <input type="text" th:field="*{userName}" placeholder="Username"
+                           class="uk-input"/>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <div class="uk-inline">
+                    <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                           class="alert alert-danger"></label>
+                    <input type="password" th:field="*{password}" placeholder="Password"
+                           class="uk-input"/>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <input type="submit" class="uk-button uk-button-default" value="Submit"/>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>
