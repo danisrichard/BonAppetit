@@ -1,0 +1,10 @@
+<div th:fragment="daily-menu" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div>
+        <div th:each=" i : ${todayMenu.menuList}">
+            <h2 th:text=" ' Menu: ' + ${i.menuType}"></h2>
+            <p th:text="'Soup: ' + ${i.food.soupName}"></p>
+            <p th:text="'Main: '+ ${i.food.mainName}"></p>
+            <p th:text="'Dessert: ' +${i.food.dessertName}"></p>
+        </div>
+    </div>
+</div>

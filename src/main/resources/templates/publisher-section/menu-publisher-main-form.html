@@ -1,70 +1,34 @@
 <div th:fragment="menu-form" xmlns:th="http://www.w3.org/1999/xhtml">
     <form class="uk-form-horizontal" th:action="@{/menu/publish}" th:object="${dailyMenu}" th:method="POST">
-
-        <!-- MENU A --->
-
-        <h2 th:text="${dailyMenu.menuA.getMenuType()} + ' Menu' "></h2>
-
-        <div class="uk-margin">
-            <div class="uk-inline">
+        <div th:each="menu, i : *{menuList}">
+            <h2 th:text="*{menuList[__${i.index}__].getMenuType()}"></h2>
+            <div class="uk-margin">
                 <input class="uk-input uk-form-width-large" type="text" placeholder="Soup"
-                       th:field="*{menuA.food.soupName}" >
-                <td th:if="${#fields.hasErrors('menuA.food.soupName')}" th:errors="*{menuA.food.soupName}">Name Error</td>
+                       th:field="*{menuList[__${i.index}__].food.soupName}">
             </div>
-        </div>
-
-        <div class="uk-margin">
-            <div>
+            <td th:if="${#fields.hasErrors('*{menuList[__${i.index}__].food.soupName}')}"
+                th:errors="*{menuList[__${i.index}__].food.soupName}">TeamName Error
+            </td>
+            <div class="uk-margin">
                 <input class="uk-input uk-form-width-large" type="text" placeholder="Main"
-                       th:field="*{menuA.food.mainName}" >
-                <td th:if="${#fields.hasErrors('menuA.food.mainName')}" th:errors="*{menuA.food.mainName}">Name Error</td>
+                       th:field="*{menuList[__${i.index}__].food.mainName}">
             </div>
-        </div>
-
-        <div class="uk-margin">
-            <div>
+            <td th:if="${#fields.hasErrors('*{menuList[__${i.index}__].food.mainName}')}"
+                th:errors="*{menuList[__${i.index}__].food.mainName}">TeamName Error
+            </td>
+            <div class="uk-margin">
                 <input class="uk-input uk-form-width-large" type="text" placeholder="Dessert"
-                       th:field="*{menuA.food.dessertName}" >
-                <td th:if="${#fields.hasErrors('menuA.food.dessertName')}" th:errors="*{menuA.food.dessertName}">Name Error</td>
+                       th:field="*{menuList[__${i.index}__].food.dessertName}">
             </div>
+            <td th:if="${#fields.hasErrors('*{menuList[__${i.index}__].food.dessertName}')}"
+                th:errors="*{menuList[__${i.index}__].food.dessertName}">TeamName Error
+            </td>
         </div>
-
-        <!-- END MENU A -->
-
-        <!-- MENU B --->
-
-        <h2 th:text="${dailyMenu.menuB.getMenuType()} + ' Menu'"></h2>
-
-        <div class="uk-margin">
-            <div>
-                <input class="uk-input uk-form-width-large" type="text" placeholder="Soup"
-                       th:field="*{menuB.food.soupName}" >
-                <td th:if="${#fields.hasErrors('menuB.food.soupName')}" th:errors="*{menuB.food.soupName}">Name Error</td>
-            </div>
-        </div>
-
-        <div class="uk-margin">
-            <div>
-                <input class="uk-input uk-form-width-large" type="text" placeholder="Main"
-                       th:field="*{menuB.food.mainName}" >
-                <td th:if="${#fields.hasErrors('menuB.food.mainName')}" th:errors="*{menuB.food.mainName}">Name Error</td>
-            </div>
-        </div>
-
-        <div class="uk-margin">
-            <div>
-                <input class="uk-input uk-form-width-large" type="text" placeholder="Dessert"
-                       th:field="*{menuB.food.dessertName}" >
-                <td th:if="${#fields.hasErrors('menuB.food.dessertName')}" th:errors="*{menuB.food.dessertName}"></td>
-            </div>
-        </div>
-
-        <!-- END MENU B -->
-            <a th:href="@{/home}" class="uk-border-rounded uk-margin uk-button uk-button-primary">
-                Go back to Home!
-            </a>
-            <button type="submit" class="uk-border-rounded uk-margin uk-button uk-button-primary">
-                Publish!
-            </button>
+        <a th:href="@{/home}" class="uk-border-rounded uk-margin uk-button uk-button-primary">
+            Go back to Home!
+        </a>
+        <button type="submit" class="uk-border-rounded uk-margin uk-button uk-button-primary">
+            Publish!
+        </button>
     </form>
 </div>

@@ -2,7 +2,7 @@ package com.bonappetit.app.service.Impl;
 
 import com.bonappetit.app.model.menuSection.DailyMenu;
 import com.bonappetit.app.repository.DailyMenuRepository;
-import com.bonappetit.app.service.MenuPublisherService;
+import com.bonappetit.app.service.DailyMenuPublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.validation.Valid;
 
 @Service
-public class DailyMenuPublisherServiceImpl implements MenuPublisherService {
+public class DailyMenuPublisherServiceImpl implements DailyMenuPublisherService {
 
     @Autowired
     private DailyMenuRepository menuRepository;
@@ -18,7 +18,7 @@ public class DailyMenuPublisherServiceImpl implements MenuPublisherService {
     @Override
     @Transactional
     public DailyMenu saveDailyMenu(@Valid DailyMenu dailyMenu) {
-        return menuRepository.save(dailyMenu);
+        return menuRepository.saveOrUpdateDailyMenu(dailyMenu);
     }
 
 }

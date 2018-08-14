@@ -1,7 +1,7 @@
 package com.bonappetit.app.controller;
 
 import com.bonappetit.app.model.menuSection.DailyMenu;
-import com.bonappetit.app.service.MenuPublisherService;
+import com.bonappetit.app.service.DailyMenuPublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,7 @@ import java.util.Date;
 public class DaliyMenuPublisherController implements WebMvcConfigurer {
 
     @Autowired
-    private MenuPublisherService menuPublisherService;
+    private DailyMenuPublisherService menuPublisherService;
 
     @RequestMapping(value = "/publish", method = RequestMethod.GET)
     public String loadPublishSite(Model model) {

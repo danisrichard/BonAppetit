@@ -1,5 +1,6 @@
 package com.bonappetit.app.model.menuSection;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -8,7 +9,7 @@ public class Menu {
 
     @NotNull
     private MenuType menuType;
-    @NotBlank
+    @Valid
     private Food food;
 
     public Menu(@NotNull @NotEmpty MenuType menuType) {
@@ -23,7 +24,7 @@ public class Menu {
         return food;
     }
 
-    public void setFood(Food food) {
+    public void setFood(@Valid Food food) {
         this.food = food;
     }
 }
