@@ -1,0 +1,29 @@
+<div th:fragment="order-menu" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="uk-card uk-card-default uk-card-small uk-card-body">
+        <h2 th:text="#{order.page.ordering} + ${concreteMenu.menuType}"></h2>
+        <p th:text="${concreteMenu.food.soupName}"></p>
+        <p th:text="${concreteMenu.food.mainName}"></p>
+        <p th:text="${concreteMenu.food.dessertName}"></p>
+        <hr class="uk-divider-small">
+        <div th:text="'Today: ' + ${concreteMenu.date}"></div>
+    </div>
+
+    <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
+        <p class="uk-text-small" th:text="#{order.page.form.message}"></p>
+        <div class="uk-card uk-card-default uk-card-small uk-card-body uk-box-shadow-small uk-box-shadow-hover-large">
+            <form action="" method="post">
+                <p th:text="#{order.page.form.request}"></p>
+                <hr class="uk-divider-small">
+                <div class="uk-margin">
+                    <input class="uk-input uk-form-width-small" type="text" name="userName" placeholder="Your name"
+                           required>
+                </div>
+                <a th:href="@{/home}" class="uk-border-rounded uk-margin uk-button uk-button-default ">
+                    Cancel!
+                </a>
+                <button class="uk-border-rounded uk-button uk-button-primary" type="submit">Confirm order</button>
+            </form>
+        </div>
+
+    </div>
+</div>
