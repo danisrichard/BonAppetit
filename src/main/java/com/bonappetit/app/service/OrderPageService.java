@@ -5,4 +5,5 @@ import com.bonappetit.app.model.menuSection.Menu;
 
 public interface OrderPageService {
     Menu getMenuById(String id) throws MenuNotFoundException;
+    void updateOrders(String id, String name) throws MenuNotFoundException;
 }

@@ -22,11 +22,12 @@ public class OrderPageController implements WebMvcConfigurer {
     }
 
     @PostMapping("/order/confirm")
-    public String confirmOrder(@RequestParam("name") String name) {
-        if (name.equals("")) {
+    public String confirmOrder(@RequestParam("name") String name, @RequestParam("id") String id) throws MenuNotFoundException {
+        if (name == null || name.equals("")) {
             return "redirect:/order";
         }
-        return null;
+        orderPageService.updateOrders(id,name);
+        return "order-page-section/order-page-confirm";
     }
 
 }

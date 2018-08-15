@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+<body>
+<div class="uk-background-muted uk-position-cover ">
+    <div class=" uk-container uk-margin-top uk-text-center">
+        <div class="uk-border-rounded uk-card uk-card-body uk-card-default">
+            <div class="uk-margin">
+                <h2 th:text="#{review.order.name }"></h2>
+            </div>
+        </div>
+        <div class="uk-border-rounded uk-card uk-card-body uk-card-default">
+            <div th:if="${reviewMenu} == null">
+                <p th:text="#{review.order.empty}"></p>
+            </div>
+            <div th:if="${reviewMenu} != null">
+                <div th:each="rev : ${reviewMenu}">
+                    <div class="uk-border-rounded uk-card uk-card-body uk-card-default">
+
+                        <div class="uk-margin uk-border-rounded uk-card uk-card-body uk-card-primary ">
+                            <h3 th:text="${rev.dayName}"></h3>
+                            <h3 th:text="${rev.date}"></h3>
+                        </div>
+                        <div class="uk-child-width-1-2@s uk-grid-match uk-margin"
+                             th:each=" map : ${rev.menuTypeAndNumbersOfOrders}">
+                            <div>
+                                <div class="uk-card uk-border-rounded uk-card-primary  uk-card-hover uk-card-body">
+                                    <p class="uk-text-uppercase" th:text="${map.key} + ' Menu'" ></p>
+                                    <p class="uk-text-bold" th:text="${map.value}"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

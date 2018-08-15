@@ -11,17 +11,19 @@
     <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
         <p class="uk-text-small" th:text="#{order.page.form.message}"></p>
         <div class="uk-card uk-card-default uk-card-small uk-card-body uk-box-shadow-small uk-box-shadow-hover-large">
-            <form action="" method="post">
+            <form th:action="@{/order/confirm}" method="post">
                 <p th:text="#{order.page.form.request}"></p>
                 <hr class="uk-divider-small">
                 <div class="uk-margin">
-                    <input class="uk-input uk-form-width-small" type="text" name="userName" placeholder="Your name"
+                    <input class="uk-input uk-form-width-small" type="text" name="name" placeholder="Your name"
                            required>
                 </div>
                 <a th:href="@{/home}" class="uk-border-rounded uk-margin uk-button uk-button-default ">
                     Cancel!
                 </a>
-                <button class="uk-border-rounded uk-button uk-button-primary" type="submit">Confirm order</button>
+                <button class="uk-border-rounded uk-button uk-button-primary" name="id" th:value="${concreteMenu.id}"
+                        type="submit">Confirm order
+                </button>
             </form>
         </div>
 

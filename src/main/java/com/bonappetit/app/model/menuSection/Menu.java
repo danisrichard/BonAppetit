@@ -9,7 +9,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 @Document
 public class Menu {
@@ -24,6 +26,7 @@ public class Menu {
     private List<String> listOfOrderNames;
 
     public Menu(@NotNull @NotEmpty MenuType menuType) {
+        this.listOfOrderNames = new ArrayList<>();
         this.id = String.valueOf(new ObjectId());
         this.menuType = menuType;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -52,6 +55,14 @@ public class Menu {
 
     public List<String> getListOfOrderNames() {
         return listOfOrderNames;
+    }
+
+    public void addNewNameToList(String name){
+        this.listOfOrderNames.add(name);
+    }
+
+    public int sumAllOrderToInteger(){
+        return (int) IntStream.range(0, listOfOrderNames.size()).count();
     }
 
     public void setListOfOrderNames(List<String> listOfOrderNames) {

@@ -3,19 +3,19 @@ package com.bonappetit.app.model.menuSection;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.stream.Collectors;
 
 @Document
 public class DailyMenu {
 
     @Id
     private String id;
-    @DateTimeFormat(pattern = "MM/dd/yyyy")
     private String date;
     @Valid
     @DBRef
@@ -30,6 +30,12 @@ public class DailyMenu {
 
     public String getId() {
         return id;
+    }
+
+    public HashMap<MenuType,Integer> getOrderNumberGroupByMenuType(){
+        return menuList.stream()
+                .filter(menu -> menu.sumAllOrderToInteger() != 0)
+                .collect(Collectors.toMap(Menu::getMenuType, Menu::sumAllOrderToInteger, (a, b) -> b, HashMap::new));
     }
 
     public String getDate() {
