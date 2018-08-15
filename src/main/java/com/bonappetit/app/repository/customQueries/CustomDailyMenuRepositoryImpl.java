@@ -17,6 +17,7 @@ public class CustomDailyMenuRepositoryImpl implements CustomDailyMenuRepository 
     @Override
     public DailyMenu saveOrUpdateDailyMenu(@Valid DailyMenu dailyMenu) {
         mongoOperation.remove(new Query(Criteria.where("date").is(dailyMenu.getDate())), DailyMenu.class);
+        dailyMenu.getMenuList().forEach(e -> mongoOperation.save(e));
         mongoOperation.save(dailyMenu);
         return dailyMenu;
     }

@@ -1,6 +1,7 @@
 package com.bonappetit.app.model.menuSection;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,6 +18,7 @@ public class DailyMenu {
     @DateTimeFormat(pattern = "MM/dd/yyyy")
     private String date;
     @Valid
+    @DBRef
     private ArrayList<Menu> menuList = new ArrayList<>();
 
     public DailyMenu() {
@@ -24,7 +26,6 @@ public class DailyMenu {
         menuList.add(new Menu(MenuType.B));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         this.date = LocalDate.now().format(formatter);
-
     }
 
     public String getId() {

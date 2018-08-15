@@ -6,22 +6,17 @@
 <div class="uk-background-muted uk-position-cover ">
     <div class=" uk-container uk-margin-top uk-text-center">
         <div class="uk-border-rounded uk-card uk-card-body uk-card-default">
-            <h2>Bon Appetit</h2>
+            <h2 class="uk-text-bold" th:text="#{bonappetit}"></h2>
         </div>
-        <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
-            <div th:text="'Today: ' + ${date}"></div>
-        </div>
-        <div th:if="${todayMenu} != null">
+        <div th:if="${concreteMenu} != null" class="uk-margin">
             <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
-                <div class="uk-margin">
-                    <div th:replace="home-page-section/daily-menu-section"></div>
-                </div>
+                <div th:replace="order-page-section/menu-page-represent-menu"></div>
             </div>
         </div>
-        <div th:if="${todayMenu} == null">
+        <div th:if="${concreteMenu} == null" class="uk-margin">
             <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
                 <div class="uk-margin">
-                    <h2 th:text="#{error.menu.not_published}"></h2>
+                    <h2 th:text="#{error.menu.not_found}"></h2>
                 </div>
             </div>
         </div>
