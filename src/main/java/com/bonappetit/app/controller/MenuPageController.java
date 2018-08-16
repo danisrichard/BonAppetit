@@ -1,7 +1,7 @@
 package com.bonappetit.app.controller;
 
 import com.bonappetit.app.model.menuSection.DailyMenu;
-import com.bonappetit.app.service.MenuPageService;
+import com.bonappetit.app.service.IndexPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ import java.util.List;
 public class MenuPageController {
 
     @Autowired
-    private MenuPageService menuPageService;
+    private IndexPageService menuPageService;
 
     @GetMapping(value = {"/home", "/", "/index"})
     public String loadIndexPage(Model model){

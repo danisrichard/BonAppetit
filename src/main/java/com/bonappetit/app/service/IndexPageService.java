@@ -4,6 +4,6 @@ import com.bonappetit.app.model.menuSection.DailyMenu;
 
 import java.util.List;
 
-public interface MenuPageService {
+public interface IndexPageService {
     List<DailyMenu> getListOfMenu();
 }

@@ -15,7 +15,6 @@ public class DateFutureOrPresentValidator implements ConstraintValidator<DateFut
 
     @Override
     public void initialize(DateFutureOrPresentConstraint constraintAnnotation) {
-
     }
 
     @Override
