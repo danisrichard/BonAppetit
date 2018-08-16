@@ -1,5 +1,14 @@
 <div th:fragment="menu-form" xmlns:th="http://www.w3.org/1999/xhtml">
     <form class="uk-form-horizontal" th:action="@{/menu/publish}" th:object="${dailyMenu}" th:method="POST">
+        <div class="uk-margin">
+            <input class="uk-input uk-form-width-medium" id="datePicker" type="date" th:field="*{date}"
+                   pattern="yyyy/MM/dd" placeholder="1970-01-01" required>
+            <td th:if="${#fields.hasErrors('*{date}')}"
+                th:errors="*{date}"></td>
+        </div>
+        <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
+            <div th:text="#{publisher.main.request}"></div>
+        </div>
         <div th:each="menu, i : *{menuList}">
             <h2 th:text="*{menuList[__${i.index}__].getMenuType()}"></h2>
             <div class="uk-margin">
@@ -31,4 +40,9 @@
             Publish!
         </button>
     </form>
+    <script>
+        document.getElementById('datePicker').value = new Date().toDateInputValue();
+
+
+    </script>
 </div>

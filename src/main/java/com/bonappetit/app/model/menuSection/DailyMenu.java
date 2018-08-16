@@ -1,12 +1,11 @@
 package com.bonappetit.app.model.menuSection;
 
+import com.bonappetit.app.utils.DateFutureOrPresentConstraint;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Collectors;
@@ -16,6 +15,7 @@ public class DailyMenu {
 
     @Id
     private String id;
+    @DateFutureOrPresentConstraint
     private String date;
     @Valid
     @DBRef
@@ -24,8 +24,6 @@ public class DailyMenu {
     public DailyMenu() {
         menuList.add(new Menu(MenuType.A));
         menuList.add(new Menu(MenuType.B));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.date = LocalDate.now().format(formatter);
     }
 
     public String getId() {
@@ -44,6 +42,10 @@ public class DailyMenu {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public void setMenuList(ArrayList<Menu> menuList) {
+        this.menuList = menuList;
     }
 
     public ArrayList<Menu> getMenuList() {

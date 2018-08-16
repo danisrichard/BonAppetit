@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class MenuPageController {
@@ -21,7 +22,7 @@ public class MenuPageController {
 
     @GetMapping(value = {"/home", "/", "/index"})
     public String loadIndexPage(Model model){
-        model.addAttribute("todayMenu",menuPageService.getCurrentDayMenu());
+        model.addAttribute("todayMenu",menuPageService.getListOfMenu());
         return "home-page-section/index";
     }
 
@@ -32,7 +33,7 @@ public class MenuPageController {
 
     @GetMapping("/dsa")
     public @ResponseBody
-    DailyMenu get(){
-        return menuPageService.getCurrentDayMenu();
+    List<DailyMenu> get(){
+        return menuPageService.getListOfMenu();
     }
 }

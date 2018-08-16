@@ -7,8 +7,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -29,8 +27,6 @@ public class Menu {
         this.listOfOrderNames = new ArrayList<>();
         this.id = String.valueOf(new ObjectId());
         this.menuType = menuType;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.date = LocalDate.now().format(formatter);
     }
 
     public void setMenuType(MenuType menuType) {
@@ -57,11 +53,11 @@ public class Menu {
         return listOfOrderNames;
     }
 
-    public void addNewNameToList(String name){
+    public void addNewNameToList(String name) {
         this.listOfOrderNames.add(name);
     }
 
-    public int sumAllOrderToInteger(){
+    public int sumAllOrderToInteger() {
         return (int) IntStream.range(0, listOfOrderNames.size()).count();
     }
 
