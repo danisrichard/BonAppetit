@@ -1,23 +1,28 @@
 <div th:fragment="daily-menu" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div>
-        <div th:each=" i : ${todayMenu.menuList}" uk-grid>
-            <div class="uk-width-1-3">
-                <h2 th:text=" ' Menu: ' + ${i.menuType}"></h2>
+    <div th:each="menu : ${todayMenu}">
+        <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
+            <div class="uk-border-rounded uk-box-shadow-medium uk-card uk-card-default uk-card-small uk-card-body uk-margin" style="background: #f8f8f8;">
+                <p th:text="'Day: ' + ${menu.date}"></p>
             </div>
-            <div th:value="${i.menuType}" name="menuType" class="uk-width-1-3">
-                <p th:text="'Soup: ' + ${i.food.soupName}"></p>
-                <p th:text="'Main: '+ ${i.food.mainName}"></p>
-                <p th:text="'Dessert: ' + ${i.food.dessertName}"></p>
-            </div>
-            <div class="uk-width-1-3">
-                <form th:action="@{/order}" method="post">
-                    <button name="id" th:value="${i.id}" type="submit"
-                            class="uk-border-rounded uk-margin uk-button uk-button-primary">
-                        Order it!
-                    </button>
+            <div th:each=" i : ${menu.menuList}" uk-grid>
+                <div class="uk-width-1-3">
+                    <h2 th:text=" ' Menu: ' + ${i.menuType}"></h2>
+                </div>
+                <div th:value="${i.menuType}" name="menuType" class="uk-width-1-3">
+                    <p th:text="'Soup: ' + ${i.food.soupName}"></p>
+                    <p th:text="'Main: '+ ${i.food.mainName}"></p>
+                    <p th:text="'Dessert: ' + ${i.food.dessertName}"></p>
+                </div>
+                <div class="uk-width-1-3">
+                    <form th:action="@{/order}" method="post">
+                        <button name="id" th:value="${i.id}" type="submit"
+                                class="uk-border-rounded uk-margin uk-button uk-button-primary">
+                            Order it!
+                        </button>
+                    </form>
+                </div>
                 </form>
             </div>
-            </form>
         </div>
     </div>
 </div>
