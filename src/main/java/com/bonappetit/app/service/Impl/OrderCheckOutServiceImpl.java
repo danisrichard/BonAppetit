@@ -24,11 +24,9 @@ public class OrderCheckOutServiceImpl implements OrderCheckOutService {
     @Override
     public OrderCheckOutWrapper getMenuOrder() throws DailyMenuNotFoundException {
         DailyMenu dailyMenu = dailyMenuRepository.getOrdersToDailyMenu();
-
         if (dailyMenu == null) {
-            throw new DailyMenuNotFoundException("null");
+            throw new DailyMenuNotFoundException("Didn't publish daily menu!");
         }
-
         return new OrderCheckOutWrapper.Builder().orderUserMap(dailyMenu.getMenuList()).build();
     }
 
