@@ -12,13 +12,10 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.bonappetit.app.utils.LocalDateConverter.localDateTimeToString;
 
 public class CustomDailyMenuRepositoryImpl implements CustomDailyMenuRepository {
 
@@ -40,16 +37,30 @@ public class CustomDailyMenuRepositoryImpl implements CustomDailyMenuRepository 
     }
 
     @Override
-    public List<DailyMenu> getDailyMenu() {
+    public List<DailyMenu> getDailyMenuList() {
         return mongoOperation.find(
                 new Query(Criteria.where("date")
-                        .gt(currentDateInString()))
+                        .gt(currentDateMinusOneInString()))
                         .with(sortByDateAsc())
                         .limit(30), DailyMenu.class
         );
     }
 
-    private String currentDateInString() {
+    @Override
+    public DailyMenu getOrdersToDailyMenu() {
+        return mongoOperation.findOne(
+                new Query(Criteria.where("date")
+                        .is(currentDateInString()))
+                , DailyMenu.class
+        );
+    }
+
+    private String currentDateInString(){
+        final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDateTime.now().format(formatter);
+    }
+
+    private String currentDateMinusOneInString() {
         final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return LocalDateTime.now().minusDays(1L).format(formatter);
     }

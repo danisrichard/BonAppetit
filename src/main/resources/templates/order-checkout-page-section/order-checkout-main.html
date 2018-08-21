@@ -6,17 +6,17 @@
 <div class="uk-background-muted uk-position-cover ">
     <div class=" uk-container uk-margin-top uk-text-center">
         <div class="uk-border-rounded uk-card uk-card-body uk-card-default">
-            <h2>Bon Appetit</h2>
+            <h2>Order checkout</h2>
         </div>
         <div class="uk-margin">
-            <div th:if="${todayMenu.size()} > 0">
+            <div th:if="${menu} != null">
                 <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
                     <div class="uk-margin">
                         <div th:replace="home-page-section/daily-menu-section"></div>
                     </div>
                 </div>
             </div>
-            <div th:if="${todayMenu.size()} == 0">
+            <div th:if="${menu} == null">
                 <div class="uk-border-rounded uk-card uk-card-default uk-card-small uk-card-body uk-margin">
                     <div class="uk-margin">
                         <h2 th:text="#{error.menu.not_published}"></h2>

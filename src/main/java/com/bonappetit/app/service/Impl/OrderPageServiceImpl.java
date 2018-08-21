@@ -2,6 +2,7 @@ package com.bonappetit.app.service.Impl;
 
 import com.bonappetit.app.errors.MenuNotFoundException;
 import com.bonappetit.app.model.menuSection.Menu;
+import com.bonappetit.app.model.menuSection.OrderUser;
 import com.bonappetit.app.repository.MenuRepository;
 import com.bonappetit.app.service.OrderPageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,6 @@ public class OrderPageServiceImpl implements OrderPageService {
     @Transactional
     public void updateOrders(String id, String name) throws MenuNotFoundException {
         Menu menu = menuRepository.findById(id).orElseThrow(() -> new MenuNotFoundException("Not found: " + id));
-        menu.addNewNameToList(name);
-        menuRepository.save(menu);
+        menuRepository.saveOrderUserToMenu(menu,new OrderUser(name));
     }
 }

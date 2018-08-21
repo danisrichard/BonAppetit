@@ -1,6 +1,7 @@
 package com.bonappetit.app.controller;
 
 import com.bonappetit.app.errors.MenuNotFoundException;
+import com.bonappetit.app.model.menuSection.OrderUser;
 import com.bonappetit.app.service.OrderPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,11 +23,11 @@ public class OrderPageController implements WebMvcConfigurer {
     }
 
     @PostMapping("/order/confirm")
-    public String confirmOrder(@RequestParam("name") String name, @RequestParam("id") String id) throws MenuNotFoundException {
-        if (name == null || name.equals("")) {
+    public String confirmOrder(@RequestParam("name") String orderName, @RequestParam("id") String id) throws MenuNotFoundException {
+        if (orderName == null || orderName.equals("")) {
             return "redirect:/order";
         }
-        orderPageService.updateOrders(id,name);
+        orderPageService.updateOrders(id,orderName);
         return "order-page-section/order-page-confirm";
     }
 
