@@ -2,6 +2,7 @@ package com.bonappetit.app.model.menuSection;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.Valid;
@@ -21,10 +22,11 @@ public class Menu {
     private String date;
     @Valid
     private Food food;
-    private List<String> listOfOrderNames;
+    @DBRef
+    private List<OrderUser> listOfOrderUser;
 
     public Menu(@NotNull @NotEmpty MenuType menuType) {
-        this.listOfOrderNames = new ArrayList<>();
+        this.listOfOrderUser = new ArrayList<>();
         this.id = String.valueOf(new ObjectId());
         this.menuType = menuType;
     }
@@ -49,20 +51,20 @@ public class Menu {
         this.id = id;
     }
 
-    public List<String> getListOfOrderNames() {
-        return listOfOrderNames;
+    public List<OrderUser> getListOfOrderUser() {
+        return listOfOrderUser;
     }
 
-    public void addNewNameToList(String name) {
-        this.listOfOrderNames.add(name);
+    public void addNewNameToList(OrderUser name) {
+        this.listOfOrderUser.add(name);
     }
 
     public int sumAllOrderToInteger() {
-        return (int) IntStream.range(0, listOfOrderNames.size()).count();
+        return (int) IntStream.range(0, listOfOrderUser.size()).count();
     }
 
-    public void setListOfOrderNames(List<String> listOfOrderNames) {
-        this.listOfOrderNames = listOfOrderNames;
+    public void setListOfOrderUser(List<OrderUser> listOfOrderUser) {
+        this.listOfOrderUser = listOfOrderUser;
     }
 
     public MenuType getMenuType() {

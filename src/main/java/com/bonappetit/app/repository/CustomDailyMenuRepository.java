@@ -9,5 +9,7 @@ public interface CustomDailyMenuRepository {
 
     DailyMenu saveOrUpdateDailyMenu(@Valid DailyMenu dailyMenu);
 
-    List<DailyMenu> getDailyMenu();
+    List<DailyMenu> getDailyMenuList();
+
+    DailyMenu getOrdersToDailyMenu();
 }

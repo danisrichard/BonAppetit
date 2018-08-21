@@ -16,7 +16,7 @@ public class IndexPageServiceImpl implements IndexPageService {
 
     @Override
     public List<DailyMenu> getListOfMenu() {
-        return dailyMenuRepository.getDailyMenu();
+        return dailyMenuRepository.getDailyMenuList();
     }
 
 }
