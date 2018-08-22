@@ -1,6 +1,6 @@
 # BonAppetit
 
-# The Project context
+### The Project context
 
 > A company has a large office with a lot of employees.
 
